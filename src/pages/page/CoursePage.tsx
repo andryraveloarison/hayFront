@@ -26,7 +26,7 @@ const CoursePage = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:8000/api/courses/getByChapterId/${id}`)
+        .get(`http://127.0.0.1:8000/api/courses/getByChapterId/${id}`)
         .then((res) => {
           setCourse(res.data);
           setLoading(false);
