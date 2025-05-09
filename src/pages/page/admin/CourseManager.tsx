@@ -76,7 +76,7 @@ const CourseManager = () => {
     setUploading((prev) => ({ ...prev, [type]: true }));
 
     try {
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from(bucket)
         .upload(filePath, file, {
           cacheControl: '3600',

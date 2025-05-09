@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { FaEnvelope, FaFacebook, FaGoogle, FaLinkedinIn, FaLock, FaTwitter, FaUser } from 'react-icons/fa';
+import { FaEnvelope, FaFacebook, FaGoogle, FaLinkedinIn, FaLock, FaUser } from 'react-icons/fa';
 import { SweetAlert } from "../../utils/sweetAlert";
 import { registerInterface } from "../../types/UserInterface";
 import Cookies from 'js-cookie';

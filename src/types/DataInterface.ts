@@ -1,4 +1,3 @@
-import { Level } from "../pages/page/admin/LevelManager";
 
 export interface DataInterface {
     levels: LevelInterface[]; 
