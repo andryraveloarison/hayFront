@@ -1,0 +1,43 @@
+### LOGIN
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+	"email":"mickaelrkt20@gmail.com",
+	"password":"mickael"
+}
+
+
+### register
+POST http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+	"username":"kol",
+	"email":"kol@gmail.com",
+	"password":"kol",
+	"online": false
+}
+
+
+### get user by id
+GET http://192.168.1.159:3000/api/users/getById/6814c26e8b7352b49bc32174
+
+
+### get all user
+GET http://localhost:3000/api/users/getAll
+
+
+### send message
+POST http://localhost:3000/api/message/send
+Content-Type: application/json
+
+{
+	"senderId":"6814e58829b88383a4cedb9a",
+	"receiverId":"6814e6e8c760cde75af824c4",
+	"content":"Message avy amin'i nananjy makany amin'i mika"
+}
+
+
+### get message for another user
+GET http://localhost:3000/api/message/6814e6e8c760cde75af824c4/6814e58829b88383a4cedb9a

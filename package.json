@@ -1,0 +1,50 @@
+{
+  "name": "chat-front-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
+    "@reduxjs/toolkit": "^2.7.0",
+    "@supabase/supabase-js": "^2.49.4",
+    "@tailwindcss/vite": "^4.1.5",
+    "axios": "^1.9.0",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
+    "firebase": "^11.7.0",
+    "js-cookie": "^3.0.5",
+    "lucide-react": "^0.508.0",
+    "phosphor-react": "^1.4.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.5.3",
+    "react-select": "^5.10.1",
+    "redux-persist": "^6.0.0",
+    "socket.io-client": "^4.8.1",
+    "sweetalert2": "^11.19.1",
+    "tailwindcss": "^4.1.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@types/js-cookie": "^3.0.6",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "daisyui": "^5.0.35",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.26.1",
+    "vite": "^6.3.1"
+  }
+}

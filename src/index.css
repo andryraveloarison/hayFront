@@ -1,0 +1,9 @@
+@import "tailwindcss";
+input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  input[type="file"]::before {
+    content: '';
+    display: inline-block;
+  }
+
