@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const Axios = axios.create({
     // baseURL: 'http://192.168.1.159:3000/'
-    baseURL: 'http://localhost:3000/'
-    // baseURL:'https://fd22-41-74-213-153.ngrok-free.app/'
+    baseURL: 'http://localhost:8000/'
+    //baseURL:'https://6970-102-18-35-51.ngrok-free.app/'
 })
 
 /**

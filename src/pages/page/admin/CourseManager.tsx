@@ -103,10 +103,10 @@ const CourseManager = () => {
     if (!allUploadsDone) return alert("Veuillez attendre la fin de tous les uploads.");
 
     try {
-      const chapterRes = await axios.post("http://localhost:3000/api/chapters/create", chapterData);
+      const chapterRes = await axios.post("http://localhost:8000/api/chapters/create", chapterData);
       const chapterId = chapterRes.data.id;
 
-      await axios.post("http://localhost:3000/api/courses/create", {
+      await axios.post("http://localhost:8000/api/courses/create", {
         ...courseData,
         chapter: chapterId,
       });
@@ -139,7 +139,7 @@ const CourseManager = () => {
 
   const fetchCourses = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/courses/getAll");
+      const res = await axios.get("http://localhost:8000/api/courses/getAll");
       setCoursesWithChapters(res.data);
     } catch (err) {
       console.error("Erreur lors du chargement des cours", err);

@@ -25,7 +25,7 @@ const LevelManager = () => {
 
   const fetchLevels = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/levels/getAll");
+      const res = await axios.get("http://localhost:8000/api/levels/getAll");
       setLevels(res.data);
     } catch (error) {
       console.error("Erreur lors du chargement des niveaux", error);
@@ -36,7 +36,7 @@ const LevelManager = () => {
 
   const handleAddLevel = async () => {
     try {
-      await axios.post("http://localhost:3000/api/levels/create", newLevel);
+      await axios.post("http://localhost:8000/api/levels/create", newLevel);
       setNewLevel({ name: "", description: "", serie: "" });
       setShowModal(false);
       fetchLevels();

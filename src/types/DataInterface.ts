@@ -23,6 +23,7 @@ export interface SubjectInterface {
   }
 
   export interface ChapterInterface {
+    order: string;
     id: string;
     title: string;
     description: string;

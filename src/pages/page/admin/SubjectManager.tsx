@@ -26,7 +26,7 @@ const SubjectManager = () => {
 
   const fetchSubjects = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/subjects/getAll");
+      const res = await axios.get("http://localhost:8000/api/subjects/getAll");
       setSubjects(res.data);
     } catch (error) {
       console.error("Erreur lors du chargement des sujets", error);
@@ -35,7 +35,7 @@ const SubjectManager = () => {
 
   const fetchLevels = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/levels/getAll");
+      const res = await axios.get("http://localhost:8000/api/levels/getAll");
       setLevels(res.data);
     } catch (error) {
       console.error("Erreur lors du chargement des niveaux", error);
@@ -44,7 +44,7 @@ const SubjectManager = () => {
 
   const handleAddSubject = async () => {
     try {
-      await axios.post("http://localhost:3000/api/subjects/create", newSubject);
+      await axios.post("http://localhost:8000/api/subjects/create", newSubject);
       setNewSubject({ name: "", level: "" });
       setIsModalOpen(false);
       fetchSubjects();
