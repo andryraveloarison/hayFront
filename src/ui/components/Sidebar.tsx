@@ -1,11 +1,8 @@
 import { Student, Books, Note,Eye } from "phosphor-react";
 import { IoIosLogOut } from "react-icons/io";
-import { useSelector } from "react-redux";
-import { selectClientsSender } from "../../redux/client/clientSelectors";
 import { NavLink, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
-    const clientSender = useSelector(selectClientsSender);
     const navigate = useNavigate();
 
     const handleLogout = () => {
