@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useAppDispatch } from "../../../redux/store";
 import { getLevels } from "../../../domain/usecases/data/getLevels";
 import { addLevel, fetchLevels } from "../../../infrastructure/api/dataApi";

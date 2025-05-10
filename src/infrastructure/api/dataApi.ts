@@ -1,6 +1,5 @@
 import { Level } from "../../pages/page/admin/LevelManager";
 import Axios from "../../service/Axios";
-import { CourseInterface, SubjectInterface } from "../../types/DataInterface";
 
 export const fetchLevels = async () : Promise<Level[]> => {
     const response = await Axios.get(`/api/levels/getAll`)
