@@ -26,3 +26,4 @@ export const fetchRegister = async (username: string, email: string, password: s
   if (!response.data) throw new Error("Erreur lors de l'enregistrement");
   return await response.data;
 };
+

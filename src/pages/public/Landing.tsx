@@ -2,10 +2,20 @@ import { useState } from 'react';
 import { Video, Eye, Users, Upload, CheckCircle, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/icone2.png'
+import { getLevels } from "../../domain/usecases/data/getLevels";
+import { getSubjects } from "../../domain/usecases/data/getSubjects";
+import { getChapters } from "../../domain/usecases/data/getChapters";
+import { useAppDispatch } from '../../redux/store';
 
 export default function Landing() {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+
+  dispatch(getLevels());
+  dispatch(getSubjects());
+  dispatch(getChapters());
 
   return (
     <div className="font-sans">

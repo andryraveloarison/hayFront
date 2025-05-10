@@ -23,11 +23,11 @@ export default function NavBar() {
             />
             </div>
             <div className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-700 hover:text-blue-600" onClick={() => navigate('/#features')}>
+              <a href="#features" className="text-gray-700 hover:text-green-600" onClick={() => navigate('/#features')}>
                 Fonctionnalités</a>
-              <a href="#how-it-works" className="text-gray-700 hover:text-blue-600" onClick={() => navigate('/#how-it-works')}>
+              <a href="#how-it-works" className="text-gray-700 hover:text-green-600" onClick={() => navigate('/#how-it-works')}>
                 Utilisation</a>
-              <a href="#pricing" className="text-gray-700 hover:text-blue-600" onClick={() => navigate('/#pricing')}>
+              <a href="#pricing" className="text-gray-700 hover:text-green-600" onClick={() => navigate('/#pricing')}>
                 Tarifs</a>
             </div>
             <div>
