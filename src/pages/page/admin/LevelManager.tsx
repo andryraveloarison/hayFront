@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAppDispatch } from "../../../redux/store";
 import { getLevels } from "../../../domain/usecases/data/getLevels";
+import { addLevel, fetchLevels } from "../../../infrastructure/api/dataApi";
 
 export interface Level {
   _id?: string;
@@ -23,10 +24,10 @@ const LevelManager = () => {
   const [showModal, setShowModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const fetchLevels = async () => {
+  const handlefetchLevels = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/levels/getAll");
-      setLevels(res.data);
+      const res = await fetchLevels();
+      setLevels(res);
     } catch (error) {
       console.error("Erreur lors du chargement des niveaux", error);
     } finally {
@@ -36,10 +37,10 @@ const LevelManager = () => {
 
   const handleAddLevel = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/levels/create", newLevel);
+      await addLevel( newLevel);
       setNewLevel({ name: "", description: "", serie: "" });
       setShowModal(false);
-      fetchLevels();
+      handlefetchLevels();
       dispatch(getLevels());
     } catch (error) {
       console.error("Erreur lors de l'ajout", error);
@@ -47,7 +48,7 @@ const LevelManager = () => {
   };
 
   useEffect(() => {
-    fetchLevels();
+    handlefetchLevels();
   }, []);
 
   return (

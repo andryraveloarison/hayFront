@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ChapterInterface } from "../../types/DataInterface";
+import { getCourseByChapterId } from "../../infrastructure/api/dataApi";
 
 interface Course {
   id: string;
@@ -25,10 +26,10 @@ const CoursePage = () => {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get(`http://127.0.0.1:8000/api/courses/getByChapterId/${id}`)
+      getCourseByChapterId(id)
         .then((res) => {
-          setCourse(res.data);
+          
+          setCourse(res);
           setLoading(false);
         })
         .catch((err) => {
@@ -73,7 +74,7 @@ const CoursePage = () => {
         rel="noopener noreferrer"
         className="flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 px-4 py-2 rounded-lg shadow transition"
       >
-        📘 Cours (PDF)
+        📘 Cours 
       </a>
     )}
     {course.exoPdfUrl && (
@@ -83,7 +84,7 @@ const CoursePage = () => {
         rel="noopener noreferrer"
         className="flex items-center gap-2 bg-green-50 hover:bg-green-100 text-green-700 px-4 py-2 rounded-lg shadow transition"
       >
-        🧠 Exercices (PDF)
+        🧠 Exercices 
       </a>
     )}
     {course.correctionPdfUrl && (
@@ -93,7 +94,7 @@ const CoursePage = () => {
         rel="noopener noreferrer"
         className="flex items-center gap-2 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg shadow transition"
       >
-        📝 Correction (PDF)
+        📝 Correction 
       </a>
     )}
     </div>

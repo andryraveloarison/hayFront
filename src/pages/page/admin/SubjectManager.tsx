@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { addSubject, fetchLevels, fetchSubjects } from "../../../infrastructure/api/dataApi";
 
 interface Level {
-  id: string;
+  id?: string;
   name: string;
   description: string;
   serie?: string;
@@ -20,23 +21,26 @@ const SubjectManager = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newSubject, setNewSubject] = useState<{ name: string; level: string }>({
     name: "",
-    level: "",
+    level: ""
   });
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const fetchSubjects = async () => {
+  const handleFetchSubjects = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/subjects/getAll");
-      setSubjects(res.data);
+      const res = await fetchSubjects();
+      setSubjects(res);
     } catch (error) {
       console.error("Erreur lors du chargement des sujets", error);
+    }finally{
+      setLoading(false)
     }
   };
 
-  const fetchLevels = async () => {
+  const handleFetchLevels = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/levels/getAll");
-      setLevels(res.data);
+      const res = await fetchLevels();
+      setLevels(res);
     } catch (error) {
       console.error("Erreur lors du chargement des niveaux", error);
     }
@@ -44,18 +48,19 @@ const SubjectManager = () => {
 
   const handleAddSubject = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/subjects/create", newSubject);
+      //await axios.post("http://127.0.0.1:8000/api/subjects/create", newSubject);
+      await addSubject(newSubject)
       setNewSubject({ name: "", level: "" });
       setIsModalOpen(false);
-      fetchSubjects();
+      handleFetchSubjects();
     } catch (error) {
       console.error("Erreur lors de l'ajout du sujet", error);
     }
   };
 
   useEffect(() => {
-    fetchLevels();
-    fetchSubjects();
+    handleFetchLevels();
+    handleFetchSubjects();
   }, []);
 
   return (
@@ -80,6 +85,10 @@ const SubjectManager = () => {
           className="border p-2 w-full rounded text-black"
         />
       </div>
+
+      {loading ? (
+          <p>Chargement...</p>
+        ) : (
       <div className="overflow-x-auto">
   <table className="min-w-full divide-y divide-gray-200 bg-white rounded-lg">
     <thead className="bg-gray-100">
@@ -115,7 +124,8 @@ const SubjectManager = () => {
         ))}
     </tbody>
   </table>
-</div>
+
+</div>)}
 
       {/* Modal */}
       {isModalOpen && (

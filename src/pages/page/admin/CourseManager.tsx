@@ -6,6 +6,7 @@ import { SubjectInterface } from "../../../types/DataInterface";
 import Select from "react-select";
 import { getChapters } from "../../../domain/usecases/data/getChapters";
 import { supabase } from '../../../utils/supabaseClient';
+import { addChapter, addCourse, fetchCourses } from "../../../infrastructure/api/dataApi";
 
 interface Chapter {
   _id?: string;
@@ -30,6 +31,7 @@ const DEFAULT_AUTHOR_ID = "681883d6ea840eb0efa5f18d"; // ID d'Andry
 const CourseManager = () => {
   const { subjects } = useSelector((state: RootState) => state.data);
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(true);
 
   const [chapterData, setChapterData] = useState<Chapter>({
     title: "",
@@ -103,18 +105,26 @@ const CourseManager = () => {
     if (!allUploadsDone) return alert("Veuillez attendre la fin de tous les uploads.");
 
     try {
-      const chapterRes = await axios.post("http://127.0.0.1:8000/api/chapters/create", chapterData);
-      const chapterId = chapterRes.data.id;
+      //const chapterRes = await axios.post("http://127.0.0.1:8000/api/chapters/create", chapterData);
+      const chapterRes = await addChapter(chapterData)
+      const chapterId = chapterRes.id;
 
-      await axios.post("http://127.0.0.1:8000/api/courses/create", {
+      console.log(chapterId)
+
+      /*await axios.post("http://127.0.0.1:8000/api/courses/create", {
         ...courseData,
         chapter: chapterId,
-      });
+      });*/
+
+      await addCourse({
+        ...courseData,
+        chapter: chapterId,
+      })
 
       alert("Chapitre et cours créés avec succès !");
       setIsModalOpen(false);
       resetForm();
-      fetchCourses();
+      handleFetchCourses();
       dispatch(getChapters());
     } catch (error) {
       console.error("Erreur de création", error);
@@ -137,17 +147,20 @@ const CourseManager = () => {
     });
   };
 
-  const fetchCourses = async () => {
+  const handleFetchCourses = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/courses/getAll");
-      setCoursesWithChapters(res.data);
+      const res = await fetchCourses();
+      setCoursesWithChapters(res);
     } catch (err) {
       console.error("Erreur lors du chargement des cours", err);
+    }
+    finally{
+      setLoading(false)
     }
   };
 
   useEffect(() => {
-    fetchCourses();
+    handleFetchCourses();
   }, []);
 
   const filteredCourses = coursesWithChapters.filter(course => {
@@ -223,6 +236,11 @@ const CourseManager = () => {
           </div>
 
           {/* Course Cards */}
+
+
+          {loading ? (
+          <p>Chargement...</p>
+        ) : (
           <div className="p-6">
             {filteredCourses.length === 0 ? (
               <div className="text-center py-12">
@@ -314,8 +332,8 @@ const CourseManager = () => {
                 ))}
               </div>
             )}
-          </div>
-        </div>
+          </div>)}
+        </div> 
       </div>
 
       {/* Modal */}
